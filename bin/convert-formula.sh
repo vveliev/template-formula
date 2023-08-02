@@ -54,7 +54,7 @@ convert_formula() {
   git reset \
     "$(echo 'feat: initial commit' \
     | git commit-tree 'HEAD^{tree}')"
-  git rm --quiet bin/convert-formula.sh AUTHORS.md CHANGELOG.md \
+  git rm --quiet bin/convert-formula.sh \
     docs/_static/css/custom.css docs/AUTHORS.rst docs/CHANGELOG.rst \
     docs/conf.py docs/CONTRIBUTING_DOCS.rst docs/index.rst
   tag_out=$(git tag --list | xargs git tag --delete)
