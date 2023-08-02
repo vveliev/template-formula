@@ -1,22 +1,23 @@
+---
 name: Pre-commit auto-update
 
-on:
+'on':
   # every day at midnight
   schedule:
     - cron: "0 0 * * 0"
-  # on demand  
-  workflow_dispatch:
+  # on demand
+  workflow_dispatch: true
 
 jobs:
   auto-update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - uses: actions/setup-python@v2
-      
+
       - uses: browniebroke/pre-commit-autoupdate-action@main
-      
+
       - uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
