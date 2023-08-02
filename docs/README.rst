@@ -24,51 +24,6 @@ start on a new formula and it serves as a style guide.
 .. contents:: **Table of Contents**
    :depth: 1
 
-General notes
--------------
-
-See the full `SaltStack Formulas installation and usage instructions
-<https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html>`_.
-
-If you are interested in writing or contributing to formulas, please pay attention to the `Writing Formula Section
-<https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html#writing-formulas>`_.
-
-If you want to use this formula, please pay attention to the ``FORMULA`` file and/or ``git tag``,
-which contains the currently released version. This formula is versioned according to `Semantic Versioning <http://semver.org/>`_.
-
-See `Formula Versioning Section <https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html#versioning>`_ for more details.
-
-If you need (non-default) configuration, please refer to:
-
-- `how to configure the formula with map.jinja <map.jinja.rst>`_
-- the ``pillar.example`` file
-- the `Special notes`_ section
-
-Contributing to this repo
--------------------------
-
-Commit messages
-^^^^^^^^^^^^^^^
-
-**Commit message formatting is significant!!**
-
-Please see `How to contribute <https://github.com/saltstack-formulas/.github/blob/master/CONTRIBUTING.rst>`_ for more details.
-
-pre-commit
-^^^^^^^^^^
-
-`pre-commit <https://pre-commit.com/>`_ is configured for this formula, which you may optionally use to ease the steps involved in submitting your changes.
-First install  the ``pre-commit`` package manager using the appropriate `method <https://pre-commit.com/#installation>`_, then run ``bin/install-hooks`` and
-now ``pre-commit`` will run automatically on each ``git commit``. ::
-
-  $ bin/install-hooks
-  pre-commit installed at .git/hooks/pre-commit
-  pre-commit installed at .git/hooks/commit-msg
-
-Special notes
--------------
-
-.. <REMOVEME
 
 Using this template
 ^^^^^^^^^^^^^^^^^^^
@@ -78,13 +33,6 @@ The easiest way to use this template formula as a base for a new formula is to u
 In the rest of this example we'll use ``example`` as the ``<formula theme>``.
 
 Follow these steps to complete the conversion from ``template-formula`` to ``example-formula``. ::
-
-  $ git clone git@github.com:YOUR-USERNAME/example-formula.git
-  $ cd example-formula/
-  $ bin/convert-formula.sh example
-  $ git push --force
-
-Alternatively, it's possible to clone ``template-formula`` into a new repository and perform the conversion there. For example::
 
   $ git clone https://github.com/saltstack-formulas/template-formula example-formula
   $ cd example-formula/
