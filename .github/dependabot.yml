@@ -14,7 +14,7 @@ updates:
       interval: "weekly"
 
   # Maintain dependencies for Composer
-  - package-ecosystem: "bundle"
+  - package-ecosystem: "bundler"
     directory: "/"
     schedule:
       interval: "weekly"
