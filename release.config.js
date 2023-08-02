@@ -1,10 +1,10 @@
 module.exports = {
-  branch: 'master',
-  repositoryUrl: 'https://github.com/saltstack-formulas/template-formula',
+  branch: ['main'],
+  repositoryUrl: 'https://github.com/vveliev/template-formula',
   plugins: [
       ['@semantic-release/commit-analyzer', {
         preset: 'angular',
-        releaseRules: './release-rules.js',
+        releaseRules: './.ci/release-rules.js',
       }],
       '@semantic-release/release-notes-generator',
       ['@semantic-release/changelog', {
@@ -12,7 +12,7 @@ module.exports = {
         changelogTitle: '# Changelog',
       }],
       ['@semantic-release/exec', {
-        prepareCmd: 'sh ./pre-commit_semantic-release.sh ${nextRelease.version}',
+        prepareCmd: 'sh ./.ci/pre-commit_semantic-release.sh ${nextRelease.version}',
       }],
       ['@semantic-release/git', {
         assets: ['*.md', 'docs/*.rst', 'FORMULA'],
@@ -32,32 +32,40 @@ module.exports = {
               note.title = `BREAKING CHANGES`
           })
 
-          // NOTE: Any changes here must be reflected in `CONTRIBUTING.md`.
-          if (commit.type === `feat`) {
-              commit.type = `Features`
-          } else if (commit.type === `fix`) {
-              commit.type = `Bug Fixes`
-          } else if (commit.type === `perf`) {
-              commit.type = `Performance Improvements`
-          } else if (commit.type === `revert`) {
-              commit.type = `Reverts`
-          } else if (commit.type === `docs`) {
-              commit.type = `Documentation`
-          } else if (commit.type === `style`) {
-              commit.type = `Styles`
-          } else if (commit.type === `refactor`) {
-              commit.type = `Code Refactoring`
-          } else if (commit.type === `test`) {
-              commit.type = `Tests`
-          } else if (commit.type === `build`) {
-              commit.type = `Build System`
-          // } else if (commit.type === `chore`) {
-          //     commit.type = `Maintenance`
-          } else if (commit.type === `ci`) {
-              commit.type = `Continuous Integration`
-          } else {
-              return
-          }
+        switch (commit.type) {
+          case 'feat':
+            commit.type = 'Features'
+            break
+          case 'fix':
+            commit.type = 'Bug Fixes'
+            break
+          case 'perf':
+            commit.type = 'Performance Improvements'
+            break
+          case 'revert':
+            commit.type = 'Reverts'
+            break
+          case 'docs':
+            commit.type = 'Documentation'
+            break
+          case 'style':
+            commit.type = 'Styles'
+            break
+          case 'refactor':
+            commit.type = 'Code Refactoring'
+            break
+          case 'test':
+            commit.type = 'Tests'
+            break
+          case 'build':
+            commit.type = 'Build System'
+            break
+          case 'ci':
+            commit.type = 'Continuous Integration'
+            break
+          default:
+            return
+        }
 
           if (commit.scope === `*`) {
               commit.scope = ``
@@ -92,13 +100,7 @@ module.exports = {
           }
 
           // remove references that already appear in the subject
-          commit.references = commit.references.filter(reference => {
-              if (issues.indexOf(reference.issue) === -1) {
-                  return true
-              }
-
-              return false
-          })
+          commit.references = commit.references.filter(reference => (issues.indexOf(reference.issue) === -1)
 
           return commit
       },
