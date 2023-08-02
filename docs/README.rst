@@ -24,6 +24,10 @@ start on a new formula and it serves as a style guide.
 .. contents:: **Table of Contents**
    :depth: 1
 
+Getting started
+---------------
+
+.. <REMOVEME
 
 Using this template
 ^^^^^^^^^^^^^^^^^^^
@@ -38,22 +42,15 @@ Follow these steps to complete the conversion from ``template-formula`` to ``exa
   $ cd example-formula/
   $ bin/convert-formula.sh example
 
-To take advantage of `semantic-release <https://github.com/semantic-release/semantic-release>`_ for automated changelog generation and release tagging, you will need a GitHub `Personal Access Token <https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line>`_ with at least the **public_repo** scope.
-
-In the Travis repository settings for your new repository, create an `environment variable <https://docs.travis-ci.com/user/environment-variables/#defining-variables-in-repository-settings>`_ named ``GH_TOKEN`` with the personal access token as value, restricted to the ``master`` branch for security.
-
-Note that this repository uses a `CODEOWNERS <https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-code-owners>`_ file to assign ownership to various parts of the formula. The conversion process removes overall ownership, but you should consider assigning ownership to yourself or your organisation when contributing your new formula to the ``saltstack-formulas`` organisation.
-
 .. REMOVEME>
 
 Available states
-----------------
-
+^^^^^^^^^^^^^^^^
 .. contents::
    :local:
 
 ``TEMPLATE``
-^^^^^^^^^^^^
+~~~~~~~~~~~~
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -62,24 +59,22 @@ manages the TEMPLATE configuration file and then
 starts the associated TEMPLATE service.
 
 ``TEMPLATE.package``
-^^^^^^^^^^^^^^^^^^^^
-
+~~~~~~~~~~~~~~~~~~~~
 This state will install the TEMPLATE package only.
 
 ``TEMPLATE.config``
-^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~
 
 This state will configure the TEMPLATE service and has a dependency on ``TEMPLATE.install``
 via include list.
 
 ``TEMPLATE.service``
-^^^^^^^^^^^^^^^^^^^^
-
+~~~~~~~~~~~~~~~~~~~~
 This state will start the TEMPLATE service and has a dependency on ``TEMPLATE.config``
 via include list.
 
 ``TEMPLATE.clean``
-^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -89,24 +84,24 @@ removes the configuration file and
 then uninstalls the package.
 
 ``TEMPLATE.service.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This state will stop the TEMPLATE service and disable it at boot time.
 
 ``TEMPLATE.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This state will remove the configuration of the TEMPLATE service and has a
 dependency on ``TEMPLATE.service.clean`` via include list.
 
 ``TEMPLATE.package.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This state will remove the TEMPLATE package and has a depency on
 ``TEMPLATE.config.clean`` via include list.
 
 ``TEMPLATE.subcomponent``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -114,13 +109,13 @@ This state installs a subcomponent configuration file before
 configuring and starting the TEMPLATE service.
 
 ``TEMPLATE.subcomponent.config``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This state will configure the TEMPLATE subcomponent and has a
 dependency on ``TEMPLATE.config`` via include list.
 
 ``TEMPLATE.subcomponent.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This state will remove the configuration of the TEMPLATE subcomponent
 and reload the TEMPLATE service by a dependency on
