@@ -101,7 +101,7 @@ This state will remove the TEMPLATE package and has a depency on
 ``TEMPLATE.config.clean`` via include list.
 
 ``TEMPLATE.subcomponent``
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Meta-state (This is a state that includes other states)*.
 
